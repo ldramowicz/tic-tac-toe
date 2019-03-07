@@ -2,7 +2,7 @@
 Tic-tac-toe test
 
 ### Local Setup
-$ git clone https://github.com/ldramowicz/tic-tac-toe.git\
+$ git clone https://github.com/ldramowicz/tic-tac-toe.git <br>
 $ cd tic-tac-toe\
 $ npm install
 
