@@ -17,4 +17,8 @@ describe('Board', () => {
     it('should render a <div />', () => {
         expect(wrapper.find('div').length).toEqual(1);
     });
+
+    it('should render the Square Component', () => {
+        expect(wrapper.containsMatchingElement(<Square />)).toEqual(true);
+    });
 });
