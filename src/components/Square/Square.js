@@ -6,7 +6,6 @@ class Square extends Component {
     render() {
         const {id, value, onSquareClick} = this.props;
         let val = "";
-        console.log("val = " + val)
         switch(value) {
             case 1:
                 val = "X";

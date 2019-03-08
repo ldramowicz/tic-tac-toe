@@ -7,7 +7,8 @@ class Notifications extends Component {
         const {currentMove, currentPlayer} = this.props;
         return (
             <div className="Notifications">
-                Move #{currentMove} Player: {currentPlayer}
+                <p>Move #{currentMove}</p>
+                <p>Next to play: {currentPlayer ? "O" : "X"}</p>
             </div>
         );
     }
