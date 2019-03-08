@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
 import '../setupTests';
 import App from './App';
+import Board from './components/Board/Board';
 
 describe('App', () => {
     let wrapper;
