@@ -14,4 +14,7 @@ describe('Board', () => {
         ReactDOM.unmountComponentAtNode(div);
     });
 
+    it('should render a <div />', () => {
+        expect(wrapper.find('div').length).toEqual(1);
+    });
 });
