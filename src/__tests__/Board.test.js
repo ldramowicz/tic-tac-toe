@@ -15,9 +15,9 @@ describe('Board', () => {
         ReactDOM.unmountComponentAtNode(div);
     });
 
-    it('should render a <div />', () => {
-        expect(wrapper.find('div').length).toEqual(1);
-    });
+/*    it('should render a <div />', () => {
+        expect(wrapper.find('div className="Board"').length).toEqual(1);
+    });*/
 
     it('should render the Square Component', () => {
         expect(wrapper.containsMatchingElement(<Square />)).toEqual(true);
@@ -25,5 +25,9 @@ describe('Board', () => {
 
     it('should render 9 Square Components', () => {
         expect(wrapper.find('Square').length).toEqual(9);
+    });
+
+    it('root element should have a "Board" class', () => {
+        expect(wrapper.hasClass('Board')).toEqual(true);
     });
 });
