@@ -22,4 +22,8 @@ describe('App', () => {
     it('should render the Board Component', () => {
         expect(wrapper.containsMatchingElement(<Board />)).toEqual(true);
     });
+
+    it('should render the Notifications Component', () => {
+        expect(wrapper.containsMatchingElement(<Notifications />)).toEqual(true);
+    });
 });
