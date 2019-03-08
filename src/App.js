@@ -3,7 +3,9 @@ import './App.css';
 
 class App extends Component {
   render() {
-      return null;
+    return (
+      <div className="App">App component</div>
+    );
   }
 }
 
