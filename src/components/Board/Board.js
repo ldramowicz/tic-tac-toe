@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import './Board.css';
 
 class Board extends Component {
-  render() {
-    return null;
-  }
+    render() {
+        return (
+            <div className="Board">Board - button squares go here</div>
+        );
+    }
 }
 
 export default Board;
