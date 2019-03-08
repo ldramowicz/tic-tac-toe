@@ -22,4 +22,8 @@ describe('Board', () => {
     it('should render the Square Component', () => {
         expect(wrapper.containsMatchingElement(<Square />)).toEqual(true);
     });
+
+    it('should render 9 Square Components', () => {
+        expect(wrapper.find('Square').length).toEqual(9);
+    });
 });
