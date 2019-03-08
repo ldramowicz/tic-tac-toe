@@ -12,3 +12,6 @@ navigate to **http://localhost:3000** in browser
 
 ### Run Tests
 $ npm test
+
+### Build
+$ npm build
