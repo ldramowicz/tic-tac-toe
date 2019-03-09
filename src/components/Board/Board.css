@@ -1,0 +1,17 @@
+.Board {
+  display: grid;
+  grid-gap: 1px;
+  grid-template-columns: repeat(3, 70px);
+  justify-content: center;
+}
+
+.squareContainer {
+  width: 70px;
+  height: 70px;
+  transition: background-color 0.25s ease;
+  background-color: #ccc;
+}
+
+.squareContainer:hover{
+  background-color: #d9d9d9;
+}
