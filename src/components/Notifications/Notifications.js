@@ -4,11 +4,17 @@ import './Notifications.css';
 
 class Notifications extends Component {
     render() {
-        const {currentMove, currentPlayer} = this.props;
+        const {currentMove, currentPlayer, winner} = this.props;
         return (
             <div className="Notifications">
-                <p>Move #{currentMove}</p>
-                <p>Next to play: {currentPlayer ? "O" : "X"}</p>
+
+                {winner ?
+                    <div>Winner: {!currentPlayer ? "O" : "X"} in {currentMove-1} turns.</div> :
+                    <div>
+                        <div>Turn #{currentMove}</div>
+                        <div>Player to play:  {currentPlayer ? "O" : "X"}</div>
+                    </div>
+                }
             </div>
         );
     }
@@ -16,7 +22,8 @@ class Notifications extends Component {
 
 Notifications.propTypes = {
     currentMove: PropTypes.number,
-    currentPlayer: PropTypes.number
+    currentPlayer: PropTypes.number,
+    winner: PropTypes.number
 };
 
 export default Notifications;
