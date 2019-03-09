@@ -21,7 +21,11 @@ class App extends Component {
         squares: new Array(9).fill(0),
         currentMove: 1,
         currentPlayer: 0,
-        history: [],
+        history: [
+            {
+                squares: new Array(9).fill(null)
+            }
+        ],
     };
 
     // Handle bindings
@@ -48,28 +52,22 @@ class App extends Component {
         return;
     }
 
-    let tmpSquares = this.state.squares;
+    let tmpHistory = this.state.history.slice(0, this.state.currentMove-1);
+    let tmpSquares = this.state.squares.slice();
     let tmpCurrentPlayer = !this.state.currentPlayer;
-      const history = this.state.history;
-      console.log("history = " + history)
-
 
     tmpSquares[id] = this.state.currentPlayer ? -1 : 1;
-    console.log("tmpSquares = " + tmpSquares);
-    console.log("this.state.currentMove-1 = " + (this.state.currentMove-1));
-      history[this.state.currentMove-1] = tmpSquares;
-      console.log("new history = " + history[0]);
-      console.log("new history = " + history[1]);
-      console.log("new history = " + history[2]);
-      console.log("new history = " + history);
-
-      let tmpCurrentMove = this.state.currentMove + 1;
+    //console.log("tmpSquares = " + tmpSquares);
+    //console.log("this.state.currentMove-1 = " + (this.state.currentMove-1));
+    let tmpCurrentMove = this.state.currentMove + 1;
 
     this.setState({
         squares: tmpSquares,
         currentPlayer: tmpCurrentPlayer,
         currentMove: tmpCurrentMove,
-        history: history,
+        history: tmpHistory.concat([
+            { squares: tmpSquares }
+        ]),
       }, () => {console.log(this.state.squares, tmpCurrentPlayer, this.state.history)}
     );
   }
@@ -83,21 +81,44 @@ class App extends Component {
   }
 
   onUndoMove() {
-    console.log("Undo")
+    console.log("Undo");
+      let tmpCurrentMove = this.state.currentMove - 1;
+      if (tmpCurrentMove <= 1) {
+          this.onResetGame();
+          return;
+      }
+      console.log(tmpCurrentMove);
+    let tmpHistory = this.state.history.slice(0, -1);
+    console.log(tmpHistory, tmpHistory.length)
+    //let tmpSquares = this.state.squares.slice();
+    let tmpCurrentPlayer = !this.state.currentPlayer;
+      console.log("tmpHistory = " + tmpHistory);
+
+    this.setState({
+        squares: tmpHistory[tmpHistory.length-1].squares,
+        currentPlayer: tmpCurrentPlayer,
+          currentMove: tmpCurrentMove,
+          history: tmpHistory,
+      }, () => {console.log(this.state.squares, this.state.history)}
+    );
   }
 
   render() {
     const {squares, currentMove, currentPlayer} = this.state;
     const winner = this.getWinner(squares);
     //console.log("winner = " + winner);
-      
+
 
     return (
       <div className="App">
         <Board squares={squares} onSquareClick={this.onSquareClick} winner={winner} />
         <Notifications currentMove={currentMove} currentPlayer={currentPlayer} winner={winner}/>
-        <button onClick={() => this.onResetGame()}>Reset</button>
-        <button onClick={() => this.onUndoMove()}>Undo</button>
+          {currentMove > 1
+              ? <div>
+                    <button onClick={() => this.onResetGame()}>Reset</button>
+                    <button onClick={() => this.onUndoMove()}>Undo</button>
+              </div>
+              : ""}
       </div>
     );
   }
