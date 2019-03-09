@@ -22,9 +22,7 @@ class App extends Component {
         currentMove: 1,
         currentPlayer: 0,
         history: [
-            {
-                squares: new Array(9).fill(null)
-            }
+            { squares: new Array(9).fill(null)}
         ],
     };
 
@@ -35,31 +33,30 @@ class App extends Component {
   }
 
   getWinner(squares) {
-  for (let i = 0; i < acrossThree.length; i++) {
+    for (let i = 0; i < acrossThree.length; i++) {
       const [a, b, c] = acrossThree[i];
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
           return squares[a];
       }
+    }
+    return null;
   }
-  return null;
-}
 
   onSquareClick(id) {
     //console.log("Current board state = " + this.state.squares + " " + id);
 
     // prevent clicking filled square and after game ends
-    if (this.state.squares[id]) {
+    if (this.getWinner(this.state.squares) || this.state.squares[id]) {
         return;
     }
 
     let tmpHistory = this.state.history.slice(0, this.state.currentMove-1);
     let tmpSquares = this.state.squares.slice();
     let tmpCurrentPlayer = !this.state.currentPlayer;
+    let tmpCurrentMove = this.state.currentMove + 1;
 
     tmpSquares[id] = this.state.currentPlayer ? -1 : 1;
     //console.log("tmpSquares = " + tmpSquares);
-    //console.log("this.state.currentMove-1 = " + (this.state.currentMove-1));
-    let tmpCurrentMove = this.state.currentMove + 1;
 
     this.setState({
         squares: tmpSquares,
@@ -81,25 +78,24 @@ class App extends Component {
   }
 
   onUndoMove() {
-    console.log("Undo");
+    //console.log("Undo");
       let tmpCurrentMove = this.state.currentMove - 1;
       if (tmpCurrentMove <= 1) {
           this.onResetGame();
           return;
       }
-      console.log(tmpCurrentMove);
+      //console.log(tmpCurrentMove);
     let tmpHistory = this.state.history.slice(0, -1);
-    console.log(tmpHistory, tmpHistory.length)
-    //let tmpSquares = this.state.squares.slice();
+    //console.log(tmpHistory, tmpHistory.length)
     let tmpCurrentPlayer = !this.state.currentPlayer;
-      console.log("tmpHistory = " + tmpHistory);
+    //console.log("tmpHistory = " + tmpHistory);
 
     this.setState({
         squares: tmpHistory[tmpHistory.length-1].squares,
         currentPlayer: tmpCurrentPlayer,
           currentMove: tmpCurrentMove,
           history: tmpHistory,
-      }, () => {console.log(this.state.squares, this.state.history)}
+      }, /*() => {console.log(this.state.squares, this.state.history)}*/
     );
   }
 
@@ -107,7 +103,6 @@ class App extends Component {
     const {squares, currentMove, currentPlayer} = this.state;
     const winner = this.getWinner(squares);
     //console.log("winner = " + winner);
-
 
     return (
       <div className="App">

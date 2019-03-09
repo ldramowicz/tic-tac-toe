@@ -13,7 +13,7 @@ class Notifications extends Component {
         } else {
             feedback = <div>
                             <div>Turn #{currentMove}</div>
-                            <div>Player to play:  {currentPlayer ? "O" : "X"}</div>
+                            <div>Make your move player:  {currentPlayer ? "O" : "X"}</div>
                         </div>
         }
         return (
