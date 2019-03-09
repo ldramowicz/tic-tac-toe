@@ -5,7 +5,7 @@ import Square from '../Square/Square';
 
 class Board extends Component {
     render() {
-        const {squares, onSquareClick, winner} = this.props;
+        const {squares, onSquareClick} = this.props;
         return (
             <div className="Board">
                 {squares.map((square, index) => {
@@ -22,7 +22,6 @@ class Board extends Component {
 Board.propTypes = {
     squares: PropTypes.array,
     onSquareClick: PropTypes.func,
-    winner: PropTypes.number
 };
 
 export default Board;

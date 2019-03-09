@@ -65,7 +65,7 @@ class App extends Component {
         history: tmpHistory.concat([
             { squares: tmpSquares }
         ]),
-      }, () => {console.log(this.state.squares, tmpCurrentPlayer, this.state.history)}
+      }, /*() => {console.log(this.state.squares, tmpCurrentPlayer, this.state.history)}*/
     );
   }
 
@@ -106,7 +106,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Board squares={squares} onSquareClick={this.onSquareClick} winner={winner} />
+        <Board squares={squares} onSquareClick={this.onSquareClick} />
         <Notifications currentMove={currentMove} currentPlayer={currentPlayer} winner={winner}/>
           {currentMove > 1
               ? <div>
