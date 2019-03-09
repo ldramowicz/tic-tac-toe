@@ -9,7 +9,7 @@ class Board extends Component {
         return (
             <div className="Board">
                 {squares.map((square, index) => {
-                    return <div key={index} className={"squareContainer" + (winner ? " winner" : "")}>
+                    return <div key={index} className="squareContainer">
                                 <Square id={index} value={squares[index]} onSquareClick={onSquareClick} />
                             </div>
                 })

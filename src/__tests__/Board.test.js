@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import '../../setupTests';
 import Board from '../components/Board/Board';
 import Square from '../components/Square/Square';
+import Notifications from '../components/Notifications/Notifications';
 
 describe('Board', () => {
     let wrapper;
@@ -29,5 +30,9 @@ describe('Board', () => {
 
     it('root element should have a "Board" class', () => {
         expect(wrapper.hasClass('Board')).toEqual(true);
+    });
+
+    it('should render the Notifications Component', () => {
+        expect(wrapper.containsMatchingElement(<Notifications />)).toEqual(true);
     });
 });
