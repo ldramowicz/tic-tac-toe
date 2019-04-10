@@ -1,5 +1,5 @@
 # tic-tac-toe
-Tic-tac-toe test
+Tic-tac-toe
 
 ### Local Setup
 $ git clone https://github.com/ldramowicz/tic-tac-toe.git <br>
